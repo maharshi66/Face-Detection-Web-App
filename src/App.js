@@ -43,7 +43,7 @@ class App extends Component{
         entries: 0,
         joined: ''
       }
-    }
+    } 
   }
 
   loadUser = (data) => {
@@ -100,6 +100,7 @@ class App extends Component{
           this.setState(Object.assign(this.state.user, {entries: count}));
           console.log(count);
         })
+        .catch(console.log);
     }
     this.displayFaceBox(this.calculateFaceLocation(response))
     })

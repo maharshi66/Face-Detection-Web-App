@@ -36,6 +36,7 @@ class App extends Component{
       imgUrl: '',
       box: {},
       route: 'signin',
+      isSignedIn: false,
       user: {
         id: '',
         name: '',
@@ -108,17 +109,25 @@ class App extends Component{
 }
 
   onRouteChange = (route) => {
+    if (route === 'signout') {
+      this.setState({isSignedIn: false})
+    } else if (route === 'home') {
+      this.setState({isSignedIn: true})
+    }
     this.setState({route: route});
   }
 
   render() {
-    const {route, box, imgUrl} = this.state;
+    const {isSignedIn, route, box, imgUrl} = this.state;
     return (
       <div className="App">
-        <Particles className="particles" params={particleOptions}/>
+        <Particles 
+          className="particles"
+           params={particleOptions}
+        />
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
         { route === 'home' 
           ? <div>
-              <Navigation onRouteChange={this.onRouteChange} />
               <Logo /> 
               <Rank entries={this.state.user.entries} name={this.state.user.name}/>
               <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onSubmit} />
@@ -132,5 +141,4 @@ class App extends Component{
     );
   }
 }
-
 export default App;

@@ -29,7 +29,7 @@ class Register extends React.Component{
 	}
 	
 	onSubmitRegister = () =>{
-		fetch('http://localhost:3000/register', {
+		fetch('https://blooming-beach-98255.herokuapp.com/register', {
 			method: 'post',
 			headers: {'Content-type':'application/json'},
 			body: JSON.stringify({
@@ -45,6 +45,7 @@ class Register extends React.Component{
 				this.props.onRouteChange('home');
 			}
 		})
+		.catch(err => console.log("Unable to register"))
 	}
 
 	render(){
